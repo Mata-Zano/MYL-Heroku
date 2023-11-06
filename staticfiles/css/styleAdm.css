@@ -1,0 +1,87 @@
+.container{
+    background-color: #F6F4F6;
+ 
+    font-family: 'Open Sauce' ;
+}
+/* Pag Administrado */
+.bienvenida{
+  margin-top: 100px;
+}
+.ventas{
+  margin-top: 50px;
+}
+.usuarios{
+  margin-top: 15px;
+}
+/* ---------------------------- */
+/* Logo Ventas */
+.logoUsuario{
+  width: 400px;
+  height: 400px;
+}
+.logoVenta{
+  width: 300px;
+  height: 400px;
+}
+
+.form-group{
+  margin: 20px;
+}
+/* ------------------------------------------------------- */
+.logo{
+    width: 125px;
+    height: 125px;
+}
+.ventasImg{
+    margin-left: 10px;
+    width: 80px;
+    height: 60px;
+}
+.botones{
+    margin-top: 50px;
+}
+.botonesVenta{
+  margin-top: 150px;
+}
+/* CSS */
+.buttonAdm {
+    margin: 10px;
+  align-items: center;
+  background-color: #F2F2F2;
+  border: 1px solid #DFDFDF;
+  border-radius: 16px;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  justify-content: center;
+  line-height: 28px;
+  max-width: 100%;
+  padding: 14px 22px;
+  text-decoration: none;
+  transition: all .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.buttonAdm:active,
+.buttonAdm:hover {
+  outline: 0;
+}
+
+.buttonAdm:hover {
+  background-color: #A6A6A6;
+  border-color: rgba(0, 0, 0, 0.19);
+}
+
+@media (min-width: 768px) {
+  .buttonAdm {
+    font-size: 20px;
+    min-width: 200px;
+    padding: 14px 16px;
+  }
+}

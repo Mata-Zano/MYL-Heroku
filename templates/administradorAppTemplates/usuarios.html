@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'administradorAppTemplates/nav.html' %} {% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% block content %}
+    <link
+      rel="stylesheet"
+      href="{% static 'css/styleAdm.css' %}"
+      type="text/css"
+    />
+    <script src="{% static 'js/adm.js' %}" type="text/javascript"></script>
+  </head>
+
+  <body class="container text-center">
+    <div class="row">
+      <div class="col-sm-4 usuarios">
+        <h1 class="centrado">Gestión de usuarios</h1>
+        <img
+          src="{% static 'img/gestionUsuarios.png' %}"
+          alt="logo"
+          class="logoUsuario"
+        />
+      </div>
+      <div class="botonesVenta col">
+        <button
+          type="button"
+          class="buttonAdm"
+          id="usariosAdm"
+          onclick="crearCuenta()"
+        >
+          <img src="{% static 'img/perfil.png' %}" alt="" class="ventasImg" />
+          Crear cuenta
+        </button>
+        <button
+          type="button"
+          class="buttonAdm"
+          id="usariosAdm"
+          onclick="administrarCuenta()"
+        >
+          <img src="{% static 'img/perfil.png' %}" alt="" class="ventasImg" />
+          Administrar cuentas
+        </button>
+      </div>
+    </div>
+  </body>
+
+  {% endblock %}
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends 'administradorAppTemplates/nav.html' %}
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        {% block content %}
+        <link
+        rel="stylesheet"
+        href="{% static 'css/styleAdm.css' %}"
+        type="text/css"
+        >
+        <script src="{% static 'js/adm.js' %}" type="text/javascript"></script>
+    </head>
+
+    <body class="container text-center">
+        <h1>Administrar cuentas</h1>
+        <form id="administrarForm" method="post">
+            {% csrf_token %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Rol</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Contraseña</th>
+                        <th>Seleccionar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.id }}</td>
+                        <td>{{ usuario.cuenta.rol.get_nombre_display }}</td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.apellido }}</td>
+                        <td>{{ usuario.telefono }}</td>
+                        <td>{{ usuario.cuenta.correo }}</td>
+                        <td>{{ usuario.cuenta.password }}</td>
+                        <td><input type="checkbox" name="usuario" value="{{ usuario.id }}"></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col">
+                    <button class="buttonAdm" type="button" id="modificarBtn" value="modificar" action="modificar" >Modificar</button>
+                </div>
+                <div class="col">
+                    <button class="buttonAdm"  type="submit" id="eliminarBtn"  value="eliminar" action="eliminar" onclick="return confirmacionEliminacion()">Eliminar</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <a href="{% url 'usuariosAdm' %}" class="buttonAdm">Volver</a>
+        </div>
+    </body>
+
+    {% endblock %}
+</html>

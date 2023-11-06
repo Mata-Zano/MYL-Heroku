@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'administradorAppTemplates/nav.html' %}
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    {% block content %}
+    <link
+    rel="stylesheet"
+    href="{% static 'css/styleAdm.css' %}"
+    type="text/css"
+/>
+    </head>
+   
+    <body class="container text-center">
+        <div class="row">
+            <div class="col-sm-4 ventas">
+          
+                    <h1 class="centrado">Gestión de ventas y productos</h1>
+                    <img src="{% static 'img/ventas.png' %}" alt="logo" class="logoVenta" />
+            </div>
+            <div class="botones col">
+                  <button type="button" class="buttonAdm" id="usariosAdm" onclick="usuariosAdm()"><img src="{% static 'img/listado.png' %}" alt="" class="ventasImg"> Listado de productos</button>
+                  <button type="button" class="buttonAdm" id="usariosAdm" onclick="usuariosAdm()"><img src="{% static 'img/listado.png' %}" alt="" class="ventasImg"> Listado de pedidos</button>
+                  <button type="button" class="buttonAdm" id="usariosAdm" onclick="usuariosAdm()"><img src="{% static 'img/perfil.png' %}" alt="" class="ventasImg"> Agregar productos</button>
+            </div>
+        </div>
+   
+    </body>
+    
+    {% endblock %}
+</html>

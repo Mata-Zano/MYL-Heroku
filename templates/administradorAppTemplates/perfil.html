@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'administradorAppTemplates/nav.html' %}
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    {% block content %}
+    <link
+    rel="stylesheet"
+    href="{% static 'css/styleAdm.css' %}"
+    type="text/css"
+/>
+    </head>
+   
+    <body class="container text-star">
+        <div class="row border border-5">
+            <label for="">Nombre: </label>
+            <br>
+            <label for="">Apellido: </label>
+            <br>
+            <label for="">Correo Electronico: </label>
+            <div class="modificarAdm">
+                <button type="button" class="buttonAdm" id="usariosAdm" onclick="usuariosAdm()"> Modificar </button>
+            </div>
+        </div>
+   
+    </body>
+    
+    {% endblock %}
+</html>
