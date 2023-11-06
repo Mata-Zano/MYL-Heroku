@@ -79,11 +79,9 @@ WSGI_APPLICATION = 'MYL.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 import pymysql
 
+
 DATABASES = {
-       'default': dj_database_url.config(
-           default=os.getenv('mysql://kvympcxzczwyjllh:vbd9vrd3q78wtml3@lcpbq9az4jklobvq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/j8qechkxzzap0li4')
-       )
-   }
+       'default': dj_database_url.config(default='mysql://kvympcxzczwyjllh:vbd9vrd3q78wtml3@lcpbq9az4jklobvq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/j8qechkxzzap0li4')}
 
 
 # Password validation
