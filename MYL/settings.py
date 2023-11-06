@@ -81,9 +81,15 @@ import pymysql
 
 
 DATABASES = {
-       'default': dj_database_url.config(default='mysql://kvympcxzczwyjllh:vbd9vrd3q78wtml3@lcpbq9az4jklobvq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/j8qechkxzzap0li4')}
-
-
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'j8qechkxzzap0li4',
+        'USER': 'kvympcxzczwyjllh',
+        'PASSWORD': 'vbd9vrd3q78wtml3',
+        'HOST': 'lcpbq9az4jklobvq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+        'PORT': 3306,
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
