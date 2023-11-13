@@ -26,6 +26,8 @@ from vendedorApp.views import *
 from clienteApp.views import *
 
 urlpatterns = [
+# ________________________________________________________________________________________________
+
     path('admin/', admin.site.urls),
     path('',Index, name='index'),
     path('catálogo/',Catalogo, name='Catalogo'),
@@ -33,19 +35,26 @@ urlpatterns = [
     path('sobreNosotros/',Sobre, name='Sobre'),
     path('ingreso/',Ingreso, name='login'),
     path('ingreso/recuperar/',Recuperar, name='recuperar'),
+
+# _____________________________________________________________________________________________
+    #ADM
     path('MYL/administrador/', indexAdministrador, name='administrador'),
     path('MYL/administrador/gestionVentas/', gestionVentas, name='ventasAdm'),
     path('MYL/administrador/gestionUsuarios/', gestionUsuarios, name='usuariosAdm'),
     path('MYL/administrador/perfil/', perfilAdm, name='perfilAdm'),
-
     # Gestion de cuentas adm
     path('MYL/administrador/gestionUsuarios/crearCuenta/', crearCuentaAdm, name='crearCuenta'),
     path('MYL/administrador/gestionUsuarios/administrarCuenta/', administrarCuentaAdm, name='administrarCuenta'),
-
+    #Lista Productos 
+    path('MYL/administrador/gestionVentas/listaProductos/', listProductos, name='listaProductos'),
+    path('MYL/administrador/gestionVentas/listPedidos/', listPedidos, name='listaPedidos'),
+    path('MYL/administrador/gestionVentas/agregarProductos/', agregarProducto, name='agregarProductos'),
+# _____________________________________________________________________________
     # VENDEDOR
     path('MYL/vendedor/', indexVendedor, name='vendedor'),
     #CLIENTE
     path('MYL/cliente/', indexCliente, name='cliente'),
+
 ] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -15,7 +15,9 @@ function ventasAdm() {
    function administrarCuenta() {
     window.location.href = "administrarCuenta";
    }
-   
+   function listarProductos() {
+    window.location.href = "listaProductos";
+   }
    function volverCrear() {
     window.location.href = "";
    }

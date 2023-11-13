@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% extends 'administradorAppTemplates/nav.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+       
+        <title>Lista de Productos</title>
+        <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous"
+        />
+
+        {% block content %}
+        <link
+        rel="stylesheet"
+        href="{% static 'css/styleAdm.css' %}"
+        type="text/css"
+        />
+
+    </head>
+    <body class="container">
+        <header class="row">
+            <h1 class="text-center">Inventario de Productos</h1>
+        </header>
+        <main class="row">
+            <div class="row">
+                <div class="col listaProductos">
+                    <form action="" class="">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">NOMBRE</th>
+                                    <th scope="col">DESCRIPCIÓN</th>
+                                    <th scope="col">CATEGORÍA</th>
+                                    <th scope="col">STOCK</th>
+                                    <th scope="col">SELECCIONAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+            
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <br>
+                <div class="col"></div>
+                <div class="col">
+                    <button class="btn btn-primary">Modificar Stock</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-success">
+                        Agregar Nuevo Producto
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-danger">Eliminar Producto</button>
+                </div>
+                <div class="col"></div>
+            </div>
+        </main>
+        <footer class="row">
+            <div class="botones col">
+            <a href="{% url 'ventasAdm' %}" type="button" class="buttonAdm">Volver</a>
+            </div>
+        </footer>
+        
+        
+    </body>
+    {% endblock %}
+</html>

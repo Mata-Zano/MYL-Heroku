@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Rol, Cuenta, Usuarios
-from .forms import UsuariosForm
+from .forms import UsuariosForm, ProductosForm
 from django.contrib import messages
 from django.db import IntegrityError
 def indexAdministrador (request):
@@ -73,4 +73,18 @@ def modificarUsuarios(request):
                       messages.error(request, 'Error al modificar el usuario.')
                return redirect('usuariosAdm')
            return render(request, 'administradorAppTemplates/administrarCuenta.html', {'usuarios': Usuarios.objects.all()})
+
+
+
+# Productos 
+def listProductos(request):
+    return render(request, 'administradorAppTemplates/listadoProducto.html')
+
+def listPedidos(request):
+    return render(request, 'administradorAppTemplates/listadoPedido.html')
+
+def agregarProducto(request):
+    form = ProductosForm()
+    return render(request, 'administradorAppTemplates/agregarProducto.html',{'form':form})
+
 # Create your views here.

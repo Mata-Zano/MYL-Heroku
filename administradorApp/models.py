@@ -29,3 +29,20 @@ class Usuarios(models.Model):
     def create_user(cls, rol, correo, password, nombre, apellido, telefono):
         cuenta = cls.objects.create(rol=rol, correo=correo, password=password)
         return Usuarios.objects.create(cuenta=cuenta, nombre=nombre, apellido=apellido, telefono=telefono)
+    
+class Categoria(models.Model):
+    CATEGORIA = [
+       ('alimentoMascotas', 'Alimento de Mascotas'),
+       ('bebestibles', 'Bebestibles'),
+       ('carbon', 'Carbón'),
+       ('abarrotes', 'Abarrotes'),
+   ]
+    nombre = models.CharField(max_length=50, choices=CATEGORIA,)
+    descripccion = models.CharField(max_length=50)
+    def __str__(self):
+        return self.get_nombre_display()
+class Producto(models.Model):
+    nombre = models.CharField(max_length=50)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
+    stock = models.IntegerField()
+    precio = models.FloatField()

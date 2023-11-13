@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, ModelChoiceField
-from .models import Rol, Cuenta, Usuarios
+from .models import Rol, Cuenta, Usuarios, Categoria, Producto
 
 class UsuariosForm(ModelForm):
     rol = ModelChoiceField(queryset=Rol.objects.all())
@@ -25,6 +25,15 @@ class UsuariosForm(ModelForm):
             self.add_error('confirmar_password',"Las contraseñas no coinciden.")
 
         return cleaned_data
+    
+class ProductosForm(ModelForm):
+    categoria = ModelChoiceField(queryset=Categoria.objects.all())
+    nombre = forms.CharField(max_length=20)
+    stock = forms.IntegerField()
+    precio = forms.FloatField()
+    class Meta:
+        model = Producto
+        fields = ['categoria', 'nombre', 'stock', 'precio']
 
 # class UsuariosForm(ModelForm):
 #     rol = ModelChoiceField(queryset=Rol.objects.all())

@@ -5,3 +5,6 @@ function administrador(){
     
     window.location.href = "http://127.0.0.1:8000/MYL/administrador/";
      }
+function recuperarCorreo(){
+    alert("Solicitud envidad de recuperacion")
+}

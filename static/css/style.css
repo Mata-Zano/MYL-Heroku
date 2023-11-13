@@ -1,6 +1,9 @@
 .container{
     background-color: #F6F4F6;
 }
+.caja{
+  margin: 10px;
+}
 .logo{
     margin-top: 10px;
     margin-right: 50px;
@@ -18,7 +21,7 @@ hr{
     margin-right: 50px;
     font-family: 'Dm Sans';
 }
-.nav{
+.navbar{
     margin-top: 30px;
     margin-right: 100px;
     text-align: start;

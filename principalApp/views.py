@@ -3,6 +3,7 @@ from . import forms
 
 def Index (request):
     return render(request, 'principalTemplates/index.html')
+
 def Contacto (request):
     form = forms.mensajeContactanos()
     data={
