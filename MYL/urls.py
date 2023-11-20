@@ -33,6 +33,8 @@ urlpatterns = [
     path('catálogo/',Catalogo, name='Catalogo'),
     path('contacto/',Contacto, name='Contacto'),
     path('sobreNosotros/',Sobre, name='Sobre'),
+
+# ---------------------------------RECUPERAR---------------------------------------------
     path('ingreso/',Ingreso, name='login'),
     path('ingreso/recuperar/',Recuperar, name='recuperar'),
 
@@ -49,13 +51,27 @@ urlpatterns = [
     path('MYL/administrador/gestionVentas/listaProductos/', listProductos, name='listaProductos'),
     path('MYL/administrador/gestionVentas/listPedidos/', listPedidos, name='listaPedidos'),
     path('MYL/administrador/gestionVentas/agregarProductos/', agregarProducto, name='agregarProductos'),
+    path('eliminarProyecto/<int:id>', eliliminarProducto, name='eliminarProductos'),
+    path('actualizarProyecto/<int:id>', actualizarProducto, name='actualizarProducto'),
 # _____________________________________________________________________________
     # VENDEDOR
     path('MYL/vendedor/', indexVendedor, name='vendedor'),
+    path('MYL/vendedor/catalogo', catalogoVendedor, name='vendedorCatalogo'),
+    path('MYL/vendedor/carrito', carritoVendedor, name='vendedorCarrito'),
+    path('MYL/vendedor/perfil', vendedorPerfil, name='vendedorPerfil'),
+    path('MYL/vendedor/pedidos', vendedorPedido, name='vendedorPedido'),
+    path('MYL/vendedor/Salir', logoutVendedor, name='salirVendedor'),
+
+
+
+
+
+    # path('carritoVendedor/<int:id>', agregar_producto, name='agregarCarrito'),.
     #CLIENTE
     path('MYL/cliente/', indexCliente, name='cliente'),
 
 ] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 

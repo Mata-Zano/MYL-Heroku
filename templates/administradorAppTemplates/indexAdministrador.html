@@ -38,13 +38,13 @@
       </div>
       <div class="botones col">
         <div class="row">
-            <button type="button" class="buttonAdm" id="ventasAdm" onclick="ventasAdm()"><img src="{% static 'img/ventas.png' %}" alt="" class="ventasImg"> Ventas y Productos</button>
+            <a type="button" class="buttonAdm" id="ventasAdm" href="{% url 'ventasAdm' %}"><img src="{% static 'img/ventas.png' %}" alt="" class="ventasImg"> Ventas y Productos</a>
         </div>
         <div class="row">
-            <button type="button" class="buttonAdm" id="usariosAdm" onclick="usuariosAdm()"><img src="{% static 'img/usuarios.png' %}" alt="" class="ventasImg"> Gestion de Usuarios</button>
+            <a type="button" class="buttonAdm" id="usariosAdm" href="{% url 'usuariosAdm' %}"><img src="{% static 'img/usuarios.png' %}" alt="" class="ventasImg"> Gestion de Usuarios</a>
         </div>
         <div class="row">
-            <button type="button" class="buttonAdm" id="perfiladm" onclick="perfilAdm()"><img src="{% static 'img/perfil.png' %}" alt="" class="ventasImg"> Perfil</button>
+            <a type="button" class="buttonAdm" id="perfiladm" href="{% url 'perfilAdm' %}"><img src="{% static 'img/perfil.png' %}" alt="" class="ventasImg"> Perfil</a>
         </div>
       </div>
     </div>

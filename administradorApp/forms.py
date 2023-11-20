@@ -29,11 +29,12 @@ class UsuariosForm(ModelForm):
 class ProductosForm(ModelForm):
     categoria = ModelChoiceField(queryset=Categoria.objects.all())
     nombre = forms.CharField(max_length=20)
+    descripcion = forms.Textarea()
     stock = forms.IntegerField()
     precio = forms.FloatField()
     class Meta:
         model = Producto
-        fields = ['categoria', 'nombre', 'stock', 'precio']
+        fields = ['categoria', 'nombre', 'stock', 'precio','descripcion']
 
 # class UsuariosForm(ModelForm):
 #     rol = ModelChoiceField(queryset=Rol.objects.all())

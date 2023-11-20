@@ -35,27 +35,28 @@
     <div class="row">
       <div class="col-md-4 bienvenida">
         <h1 class="prueba">BIENVENIDO VENDEDOR</h1>
-        <h2>Nombre del Vendedor</h2>
+        <h2>{{ nombre }} {{ apellido }}
+        </h2>
         <div class="">
           <img src="{% static 'img/logo.png' %}" alt="logo" class="logo" />
         </div>
       </div>
       <div class="botones col">
         <div class="row">
-            <button type="button" class="buttonAdm" id="ventasAdm" ><img src="{% static 'img/libro.png' %}" alt="" class="ventasImg"> Catálogo</button>
+            <a href="{% url 'vendedorCatalogo' %}" type="button" class="buttonAdm" id="ventasAdm" ><img src="{% static 'img/libro.png' %}" alt="" class="ventasImg"> Catálogo</a>
         </div>
         <div class="row">
-            <button type="button" class="buttonAdm" id="usariosAdm" ><img src="{% static 'img/carrito.png' %}" alt="" class="ventasImg"> Carrito</button>
+            <a href="{% url 'vendedorCarrito' %}" type="button" class="buttonAdm" id="usariosAdm" ><img src="{% static 'img/carrito.png' %}" alt="" class="ventasImg"> Carrito</a>
         </div>
         <div class="row">
-          <button type="button" class="buttonAdm" id="usariosAdm" ><img src="{% static 'img/listadoV.png' %}" alt="" class="ventasImg"> Gestión de Pedidos</button>
+          <a  href="{% url 'vendedorPedido' %}" type="button" class="buttonAdm" id="usariosAdm" ><img src="{% static 'img/listadoV.png' %}" alt="" class="ventasImg"> Gestión de Pedidos</a>
       </div>
       <div class="row">
-        <button type="button" class="buttonAdm" id="perfiladm" ><img src="{% static 'img/perfil.png' %}" alt="" class="ventasImg"> Perfil</button>
+        <a href="{% url 'vendedorPerfil' %}" type="button" class="buttonAdm" id="perfiladm" ><img src="{% static 'img/perfil.png' %}" alt="" class="ventasImg"> Perfil</a>
     </div>
       </div>
       
-        
+      
       </div>
     </div>
   </body>

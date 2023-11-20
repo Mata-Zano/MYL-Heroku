@@ -26,24 +26,24 @@
         />
       </div>
       <div class="botonesVenta col">
-        <button
+        <a
           type="button"
           class="buttonAdm"
           id="usariosAdm"
-          onclick="crearCuenta()"
+          href="{% url 'crearCuenta' %}"
         >
           <img src="{% static 'img/perfil.png' %}" alt="" class="ventasImg" />
           Crear cuenta
-        </button>
-        <button
+        </a>
+        <a
           type="button"
           class="buttonAdm"
           id="usariosAdm"
-          onclick="administrarCuenta()"
+          href="{% url 'administrarCuenta' %}"
         >
           <img src="{% static 'img/perfil.png' %}" alt="" class="ventasImg" />
           Administrar cuentas
-        </button>
+        </a>
       </div>
     </div>
   </body>

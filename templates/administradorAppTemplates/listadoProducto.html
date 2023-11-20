@@ -27,6 +27,7 @@
         <header class="row">
             <h1 class="text-center">Inventario de Productos</h1>
         </header>
+        <br>
         <main class="row">
             <div class="row">
                 <div class="col listaProductos">
@@ -38,13 +39,25 @@
                                     <th scope="col">DESCRIPCIÓN</th>
                                     <th scope="col">CATEGORÍA</th>
                                     <th scope="col">STOCK</th>
-                                    <th scope="col">SELECCIONAR</th>
+                                    <th scope="col">PRECIO</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for p in productos %}
                                 <tr>
-            
+                                    <td>{{ p.nombre }}</td>
+                                    <td>{{ p.descripcion }}</td>
+                                    <td>{{ p.categoria }}</td>
+                                    <td>{{ p.stock }}</td>
+                                    <td>{{ p.precio }}</td>
+                                    <td><a class="btn btn-primary" href="{% url 'actualizarProducto' p.id %}">Modificar Stock</a></td>
+                                    <td><a class="btn btn-danger" href="{% url 'eliminarProductos' p.id %}">Eliminar Producto</a></td>
+
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </form>
@@ -52,25 +65,20 @@
             </div>
             <div class="row">
                 <br>
-                <div class="col"></div>
-                <div class="col">
-                    <button class="btn btn-primary">Modificar Stock</button>
                 </div>
                 <div class="col">
-                    <button class="btn btn-success">
+                    <a href="{% url 'agregarProductos' %}" class="buttonAdm">
                         Agregar Nuevo Producto
-                    </button>
+                    </a>
                 </div>
-                <div class="col">
-                    <button class="btn btn-danger">Eliminar Producto</button>
-                </div>
-                <div class="col"></div>
+
             </div>
         </main>
         <footer class="row">
             <div class="botones col">
             <a href="{% url 'ventasAdm' %}" type="button" class="buttonAdm">Volver</a>
             </div>
+            <p></p>
         </footer>
         
         
