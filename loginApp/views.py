@@ -6,11 +6,6 @@ from administradorApp.models import Cuenta
 from django.contrib.auth.decorators import login_required
 
 # Crear grupos
-
-
-
-
-@login_required
 def Ingreso(request):
     form = LoginForm()
     if request.method == 'POST':
