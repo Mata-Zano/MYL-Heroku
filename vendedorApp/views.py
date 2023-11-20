@@ -33,6 +33,7 @@ def indexVendedor(request):
 @login_required
 def catalogoVendedor(request,):
     if request.method == 'POST':
+        producto = Producto.objects.all()
         detalle_pedido_form = DetallePedidoForm(request.POST)
         if detalle_pedido_form.is_valid():
             # Crea el detalle del pedido y agrega el producto al carrito
@@ -51,7 +52,7 @@ def catalogoVendedor(request,):
             'titulo': 'Cátalogo'
         }
 
-    return render(request, 'vendedorAppTemplates/vendedorCatalogo.html', {'data': data, 'detalle_pedido_form': detalle_pedido_form})
+    return render(request, 'vendedorAppTemplates/vendedorCatalogo.html', data)
 
 
 # En la vista carritoVendedor
