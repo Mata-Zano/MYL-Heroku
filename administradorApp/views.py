@@ -3,36 +3,41 @@ from .models import Rol, Cuenta, Usuarios, Producto
 from .forms import UsuariosForm, ProductosForm
 from django.contrib import messages
 from django.db import IntegrityError
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import permission_required,login_required
 
-
-@login_required
-@permission_required('administradorApp.view_cuenta', raise_exception=True)
+# @login_required(login_url='login')
 def indexAdministrador(request):
-    return render(request, 'administradorAppTemplates/indexAdministrador.html')
+    cuenta_id = request.session.get('usuario_id')
+    cuenta = Cuenta.objects.get(id=cuenta_id)
+    if cuenta_id is not None:
+        usuario = Usuarios.objects.get(cuenta = cuenta_id)
+        nombre = usuario.nombre
+        apellido = usuario.apellido
+        data ={
+            'nombre':nombre,
+            'apellido':apellido
 
+        }
+        return render(request, 'administradorAppTemplates/indexAdministrador.html', data)
+    else:
+        print("Usuario no registrado ")
+        return redirect('login')
 
-@login_required
-@permission_required('administradorApp.view_cuenta', raise_exception=True)
 def gestionVentas(request):
     return render(request, 'administradorAppTemplates/ventas.html')
 
 
-@login_required
-@permission_required('administradorApp.view_cuenta', raise_exception=True)
+
 def gestionUsuarios(request):
     return render(request, 'administradorAppTemplates/usuarios.html')
 
 
-@login_required
-@permission_required('administradorApp.view_cuenta', raise_exception=True)
 def perfilAdm(request):
     return render(request, 'administradorAppTemplates/perfil.html')
 
 # Gestion de usuarios
 
-@login_required
-@permission_required('administradorApp.view_cuenta', raise_exception=True)
+
 def administrarCuentaAdm(request):
     usuarios = Usuarios.objects.all()
     if request.method == 'POST':
@@ -46,8 +51,8 @@ def administrarCuentaAdm(request):
         return render(request, 'administradorAppTemplates/administrarCuenta.html', {'usuarios': Usuarios.objects.all()})
     return render(request, 'administradorAppTemplates/administrarCuenta.html', {'usuarios': usuarios})
 
-@login_required
-@permission_required('administradorApp.view_cuenta', raise_exception=True)
+
+
 def crearCuentaAdm(request):
     if request.method == 'POST':
         form = UsuariosForm(request.POST)
@@ -78,8 +83,8 @@ def crearCuentaAdm(request):
 
         return render(request, 'administradorAppTemplates/crearCuenta.html', {'form': form})
 
-@login_required
-@permission_required('administradorApp.view_cuenta', raise_exception=True)
+
+
 def modificarUsuarios(request):
     if request.method == 'POST':
         ids = request.POST.getlist('usuario')
@@ -100,8 +105,8 @@ def modificarUsuarios(request):
 
 
 # Productos
-@login_required
-@permission_required('administradorApp.view_cuenta', raise_exception=True)
+
+
 def listProductos(request):
     productos = Producto.objects.all()
     data = {
@@ -127,15 +132,13 @@ def actualizarProducto(request, id):
 
 
 
-@login_required
-@permission_required('administradorApp.view_cuenta', raise_exception=True)
+
+
 def listPedidos(request):
     return render(request, 'administradorAppTemplates/listadoPedido.html')
 
 
 
-@login_required
-@permission_required('administradorApp.view_cuenta', raise_exception=True)
 def agregarProducto(request):
     productos = Producto()
     form = ProductosForm()
@@ -174,4 +177,7 @@ def agregarProducto(request):
 
         return render(request, 'administradorAppTemplates/agregarProducto.html', data)
 
+def logoutVendedor(request):
+    del request.session['usuario_id']
+    return redirect('login')
 # Create your views here.

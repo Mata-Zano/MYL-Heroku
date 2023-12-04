@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import Permission, Group,ContentType
+from django.contrib.auth.models import AbstractBaseUser
 
 # Create your models here.
 class Rol(models.Model):
@@ -18,6 +18,8 @@ class Cuenta(models.Model):
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     correo =  models.EmailField(unique=True)
     password = models.CharField(max_length=50)
+    
+
 
 
 class Usuarios(models.Model):
@@ -53,7 +55,7 @@ class Producto(models.Model):
 
 class Pedido(models.Model):
     usuario = models.ForeignKey(
-        Usuarios,on_delete=models.SET_NULL,
+        Usuarios, on_delete=models.SET_NULL,
         related_name="pedidos",
         null=True
     )
@@ -71,31 +73,39 @@ class Pedido(models.Model):
     apellido = models.CharField(max_length=100)
     fechaCreacion = models.DateTimeField(auto_now_add=True)
     fechaEntrega = models.DateTimeField(null=True, blank=True)
-    total = models.DecimalField( max_digits=10, decimal_places=2)
-    
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    productos = models.ManyToManyField(
+        Producto,
+        through='DetallePedido',
+        through_fields=('pedido', 'producto'),
+        related_name='pedidos'
+    )
+    direccion = models.CharField(max_length=250, default='0')
+    comuna = models.CharField(max_length=250, default='0')
+    ciudad = models.CharField(max_length=250, default='0')
     def __str__(self):
         return f"Pedido {self.id}"
 
 class DetallePedido(models.Model):
-    pedido =models.ForeignKey(
-        Pedido, on_delete= models.CASCADE,
-        related_name="detalle"
+    pedido = models.ForeignKey(
+        Pedido, on_delete=models.CASCADE,
+        related_name="detalles"
     )
     producto = models.ForeignKey(
         Producto,
         on_delete=models.SET_NULL,
-        related_name="pedido",
+        related_name="detalles",
         null=True
     )
     cantidad = models.PositiveIntegerField()
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
-    precio_total = models.DecimalField( max_digits=10,decimal_places=2)
+    precio_total = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return f"Detalle de pedido {self.id}"
-    def estado (self):
-        return self.pedido.get_state()
 
+    def estado(self):
+        return self.pedido.get_state()
     
 # GRUPOS Y PERMISOS
 # admin_group = Group.objects.get_or_create(name='Administrador')

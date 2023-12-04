@@ -1,11 +1,9 @@
-from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import LoginForm
+from loginApp.forms import LoginForm
+from django.contrib.auth import authenticate
 from administradorApp.models import Cuenta
-from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
-# Crear grupos
 def Ingreso(request):
     form = LoginForm()
     if request.method == 'POST':
@@ -33,7 +31,8 @@ def Ingreso(request):
         return render(request, 'loginTemplates/login.html', {'form': form})
     else:
         return render(request, 'loginTemplates/login.html', {'form': form})
-    
+
+
 def Recuperar (request):
     return render(request, 'loginTemplates/recuperar.html')
 

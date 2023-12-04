@@ -57,7 +57,16 @@ urlpatterns = [
     # VENDEDOR
     path('MYL/vendedor/', indexVendedor, name='vendedor'),
     path('MYL/vendedor/catalogo', catalogoVendedor, name='vendedorCatalogo'),
+    path('vendedor/agregar_a_Carrito/<int:id>', agregarCarrito, name='agregarCarrito'),
+
     path('MYL/vendedor/carrito', carritoVendedor, name='vendedorCarrito'),
+    path('vendedor/eliminar_producto_Carrito/<int:id>', eliminarProductoCarrito, name='eliminarProductoCarrito'),
+    path('vendedor/sumarleProducto/<int:id>', sumarleProducto, name='sumarleProducto'),
+    path('vendedor/restar_producto_Carrito/<int:id>', restar_producto, name='restarProductoCarrito'),
+    path('vendedor/seleccionUsuario/<int:id>', seleccionUsuario, name='SeleccionUsuario'),
+
+
+    
     path('MYL/vendedor/perfil', vendedorPerfil, name='vendedorPerfil'),
     path('MYL/vendedor/pedidos', vendedorPedido, name='vendedorPedido'),
     path('MYL/vendedor/Salir', logoutVendedor, name='salirVendedor'),
