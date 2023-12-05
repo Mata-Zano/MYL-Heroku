@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-{% extends 'vendedorAppTemplates/navVendedor.html' %} {% load static %}
+{% extends 'vendedorAppTemplates/navVendedor.html' %} 
+{% load static %}
 
 <html lang="en">
   <head>
@@ -18,16 +19,6 @@
     <title>Cátalogo</title>
 
     {% block contentVendedor %}
-    <link
-      rel="stylesheet"
-      href="{% static 'css/styleAdm.css' %}"
-      type="text/css"
-    />
-    <script src="{% static 'js/form.js' %}" type="text/javascript"></script>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
   </head>
 
   <body class="container text-center">
@@ -115,8 +106,8 @@
                   {{ pedidoForm.total.label_tag }} {{ pedidoForm.total }} 
                   {{ pedidoForm.total.errors }}
                 </div>
-                {{ pedidoForm.estado.label_tag }} {{ pedidoForm.estado }}
-                {{pedidoForm.estado.errors }}
+                  {{ pedidoForm.estado.label_tag }} {{ pedidoForm.estado }}
+                  {{pedidoForm.estado.errors }}
               </div>
                 <div class="form-group">
                   {{ detalleForm.cantidad.label_tag }} {{ detalleForm.cantidad}}

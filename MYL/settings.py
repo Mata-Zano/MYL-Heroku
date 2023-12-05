@@ -57,6 +57,8 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
 ROOT_URLCONF = 'MYL.urls'
 
 TEMPLATES = [

@@ -1,5 +1,5 @@
 from django import forms
-from administradorApp.models import Usuarios ,Cuenta, Producto,Pedido, DetallePedido
+from administradorApp.models import Usuarios,Pedido, DetallePedido
 
 
 class PedidoForm(forms.ModelForm):

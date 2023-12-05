@@ -3,7 +3,7 @@ from administradorApp.models import Cuenta, Producto,Pedido,DetallePedido
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from vendedorApp.form import DetallePedidoForm, PedidoForm
-from MYL.Carrito import Carrito
+from vendedorApp.Carrito import Carrito
 from administradorApp.models import Usuarios
 
 # Create your views here.}
@@ -70,7 +70,7 @@ def carritoVendedor(request):
             'detalleForm':detalleform
             
             }
-        return render(request, 'vendedorAppTemplates/vendedorCarrito.html',data)
+        return render(request, 'vendedorAppTemplates/vendedorCarrito2.html',data)
     else:
         return redirect('login')
     
@@ -108,68 +108,6 @@ def seleccionUsuario(request, user_id):
     data = {'nombre': user.nombre, 'apellido': user.apellido}
     return JsonResponse(data)
     
-
-    # if request.method == 'POST':
-    #     pedido_form = PedidoForm(request.POST)
-    #     detalle_pedido_form = DetallePedidoForm(request.POST)
-
-    #     if pedido_form.is_valid() and detalle_pedido_form.is_valid():
-    #         pedido = pedido_form.save()
-    #         detalle_pedido = detalle_pedido_form.save(commit=False)
-    #         detalle_pedido.pedido = pedido
-    #         detalle_pedido.save()
-    #         return redirect('vendedorCarrito')  # Cambia 'tu_vista_exitosa' con la vista que desees
-    # else:
-    #     pedido_form = PedidoForm()
-    #     detalle_pedido_form = DetallePedidoForm()
-
-    # return render(request, 'vendedorAppTemplates/vendedorCarrito.html',  {'pedidoForm': pedido_form, 'detallePedidoForm': detalle_pedido_form})
-
-       # if request.method == 'POST':
-        #     pedido_form = PedidoForm(request.POST)
-        #     if pedido_form.is_valid():
-        #         pedido = pedido_form.save(commit=False)
-        #         pedido.usuario = usuario
-        #         pedido.save()
-
-        #         carrito = request.session.get('carrito', [])
-        #         for producto_id in carrito:
-        #             producto = Producto.objects.get(id=producto_id)
-        #             DetallePedido.objects.create(pedido=pedido, producto=producto, cantidad=1,
-        #                                          precio_unitario=producto.precio, precio_total=producto.precio)
-
-        #         # Vaciamos el carrito
-        #         request.session['carrito'] = []
-
-        #         return redirect('vendedorCarrito')
-
-        # else:
-        #     pedido_form = PedidoForm()
-
-        # detalles_pedido = []
-        # total_pedido = 0
-
-        # # Obtén los detalles del carrito
-        # carrito = request.session.get('carrito', [])
-        # for producto_id in carrito:
-        #     producto = Producto.objects.get(id=producto_id)
-        #     detalles_pedido.append({
-        #         'producto': producto,
-        #         'cantidad': 1,
-        #         'precio_unitario': producto.precio,
-        #         'precio_total': producto.precio
-        #     })
-        #     total_pedido += producto.precio
-
-        # data = {
-        #     'nombre': usuario.nombre,
-        #     'apellido': usuario.apellido,
-        #     'pedidoForm': pedido_form,
-        #     'detalles_pedido': detalles_pedido,
-        #     'total_pedido': total_pedido,
-        # }
-        # return render(request, 'vendedorAppTemplates/vendedorCarrito.html', data)
-
 def vendedorPerfil(request):
     cuenta_id = request.session.get('usuario_id')
     if cuenta_id is not None:
