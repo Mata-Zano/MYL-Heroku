@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% extends 'clienteAppTemplates/navCliente.html' %} 
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cátalogo</title>
+  </head>
+  {% block contentCliente %}
+  <body class="container text-center">
+    <header>
+      <div class="row text-center">
+        <h2>{{ titulo }}</h2>
+        <p>
+          ¡Bienvenido al catálogo de productos de nuestra distribuidora!
+          ¡Descubra una amplia gama de productos cuidadosamente seleccionados
+          para satisfacer sus necesidades y elevar su experiencia.!
+        </p>
+      </div>
+      <hr />
+    </header>
+    <main>
+      {% if messages %}
+      <div>
+        {% for message in messages %} {% if message.tags == 'success' %}
+        <div class="alert alert-success" role="alert">{{ message }}</div>
+        {% elif message.tags == 'error' %}
+        <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endif %} {% endfor %}
+      </div>
+      {% endif %}
+
+      <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
+        {% for p in producto %}
+          {% if p.stock == 0 %}
+
+          {% else %}
+          <div class="col">
+            <div class="card h-100 text-center">
+              <img src="..." class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">{{ p.nombre }}</h5>
+                <div class="row text-start">
+                  <label for="">Descripcion:</label>
+                  <p class="card-text">{{ p.descripcion }}</p>
+                  <label for="">Stock:</label>
+                  <p class="card-text">{{ p.stock }}</p>
+                  <label for="">Precio:</label>
+                  <p class="card-text">{{ p.precio }}</p>
+                </div>
+                <form method="post" action="{% url 'agregarCarritoCliente' p.id %}">
+                  <button type="submit" class="btn btn-success">Agregar</button>
+                  <br />
+                  <br />
+                  {% csrf_token %}
+                  <label for="">Ingrese una cantidad:</label><br />
+                  <input
+                    type="number"
+                    class="text-center"
+                    name="cantidad"
+                    value="1"
+                    required
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <hr />
+    </main>
+  </body>
+
+  {% endblock %}
+</html>

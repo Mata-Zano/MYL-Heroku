@@ -17,16 +17,19 @@ class Rol(models.Model):
 class Cuenta(models.Model):
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     correo =  models.EmailField(unique=True)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=350)
+    last_login = models.DateTimeField(null=True, blank=True)  
     
-
-
 
 class Usuarios(models.Model):
     cuenta = models.OneToOneField(Cuenta, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=20)
     telefono = models.CharField(max_length=50)
+    direccion = models.CharField(max_length=250, default='0')
+    comuna = models.CharField(max_length=250, default='0')
+    ciudad = models.CharField(max_length=250, default='0')
+    carrito = models.JSONField(default=dict, null=True, blank=True) 
     
     @classmethod
     def create_user(cls, rol, correo, password, nombre, apellido, telefono):
@@ -47,6 +50,7 @@ class Categoria(models.Model):
     
     
 class Producto(models.Model):
+    imagen_url = models.URLField(null=True)
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=250)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
@@ -54,6 +58,7 @@ class Producto(models.Model):
     precio = models.FloatField()
 
 class Pedido(models.Model):
+    telefono = models.CharField(max_length=20, blank=True, null=True)
     usuario = models.ForeignKey(
         Usuarios, on_delete=models.SET_NULL,
         related_name="pedidos",
@@ -62,12 +67,12 @@ class Pedido(models.Model):
     estado = models.CharField(
         max_length=50,
         choices=(
-            ("enProceso", "En proceso"),
-            ("enviado", "Enviado"),
-            ("cancelado", "Cancelado"),
-            ("entregado", "Entregado"),
+            ("En proceso", "En proceso"),
+            ("Enviado", "Enviado"),
+            ("Cancelado", "Cancelado"),
+            ("Entregado", "Entregado"),
         ),
-        default="en_proceso",
+        default="En proceso",
     )
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
@@ -83,6 +88,11 @@ class Pedido(models.Model):
     direccion = models.CharField(max_length=250, default='0')
     comuna = models.CharField(max_length=250, default='0')
     ciudad = models.CharField(max_length=250, default='0')
+    usuario_destino = models.ForeignKey(
+        Usuarios, on_delete=models.SET_NULL,
+        related_name="pedidos_recibidos",
+        null=True  # Cambiar a True para permitir valores nulos
+    )
     def __str__(self):
         return f"Pedido {self.id}"
 
@@ -97,7 +107,7 @@ class DetallePedido(models.Model):
         related_name="detalles",
         null=True
     )
-    cantidad = models.PositiveIntegerField()
+    cantidad = models.PositiveIntegerField(default=1)
     precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
     precio_total = models.DecimalField(max_digits=10, decimal_places=2)
 

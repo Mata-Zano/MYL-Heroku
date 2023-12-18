@@ -20,15 +20,19 @@
         <title>Agregar Producto</title>
     </head>
     <body class="container">
+        {% if modificacion %}
+        <header class="row text-center"> 
+            <h1>Modificar Producto: {{ nombre }}</h1>
+        </header><br/>
+        {% else %}
         <header class="row text-center"> 
             <h1>Agregar Productos</h1>
-        </header>
+        </header><br/>
+        {% endif %}
+
         <main class="row text-center">
             <div class="row justify-content-center">
-                <div class="col"></div>
-                <form action="" method="post" class="align-items-start">
-                    {% csrf_token %}
-                    {% if messages %}
+                 {% if messages %}
                         <div>
                             {% for message in messages %}
                                 {% if message.tags == 'success' %}
@@ -43,36 +47,58 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-                    <div class="form-group">
+                <div class="row justify-content-center">
+                    <form action="" method="post" class="col-8">
+                    {% csrf_token %}
+                    <div class=" ">
+                        {{ form.imagen_url.label_tag }} {{ form.imagen_url }}
+                        {{ form.imagen_url.errors }}
+                    </div>
+                    <div class="">
                         {{ form.categoria.label_tag }} {{ form.categoria }}
                         {{ form.categoria.errors }}
                     </div>
-                    <div class="form-group">
+                    <div class="">
                         {{ form.nombre.label_tag }} {{ form.nombre }}
                         {{ form.nombre.errors }}
                     </div>
-                    <div class="form-group">
+                    <div class="">
                         {{ form.stock.label_tag }} {{ form.stock }}
                         {{ form.stock.errors }}
                     </div>
-                    <div class="form-group">
+                    <div class="">
                         {{ form.precio.label_tag }} {{ form.precio }}
                         {{ form.precio.errors }}
                     </div>
-                    <div class="form-group">
+                    <div class="">
                         {{ form.descripcion.label_tag }} {{ form.descripcion }}
                         {{ form.stock.errors }}
                     </div>
-                    <button class="buttonAdm" type="submit">Crear</button>
-                </form>
+                    {% if modificacion %}
+                    <div class="form-group text-center">
+                        <button class=" buttonAdm" type="submit" onclick="confirmarEditarProducto('{{ nombre }}','{{ p.id }}');">Modificar</button>
+                    </div>
+                    {% else %}
+                    <div class="form-group text-center">
+                        <button class=" buttonAdm" type="submit">Crear</button>
+                    </div>
+                    {% endif %}
+                    </form>
+                </div>
         </main>
         <footer class="row">
             <div class="botones col">
                 <a href="{% url 'listaProductos' %}" type="button" class="buttonAdm">Listado de producto</a>
             </div>
+            {% if modificacion %}
+            <div class="botones col">
+                <a href="{% url 'listaProductos' %}" type="button" class="buttonAdm">Volver</a>
+            </div>
+            {% else %}
             <div class="botones col">
                 <a href="{% url 'ventasAdm' %}" type="button" class="buttonAdm">Volver</a>
             </div>
+            {% endif %}
         </footer>
     </body>
     {% endblock %}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% extends 'clienteAppTemplates/navCliente.html' %}
+
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Pedidos</title>
+
+</head>
+
+{% block contentCliente %}
+  <body class="container text-center">
+    <main>
+        <div class="row text-center">
+          <h2>{{ titulo }}</h2>
+        </div>
+        <br />
+        <div class="row">
+          {% if messages %}
+          <div>
+              {% for m in messages %}
+                  {% if m.tags == 'success' %}
+                      <div class="alert alert-success" role="alert">
+                          {{ m }}
+                      </div>
+                  {% elif m.tags == 'error' %}
+                      <div class="alert alert-danger" role="alert">
+                          {{ m }}
+                      </div>
+                  {% endif %}
+              {% endfor %}
+          </div>
+          {% endif %}
+          {% if pedidos %}
+          <div class="col">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">ID Pedido</th>
+                  <th scope="col">Nombre del destinatario</th>
+                  <th scope="col">Teléfono</th>
+                  <th scope="col">Dirección</th>
+                  <th scope="col">Ciudad</th>
+                  <th scope="col">Fecha del pedido</th>
+                  <th scope="col">Estado del pedido</th>
+                  <th scope="col">Modificar estado</th>
+                  <th scope="col">Cancelar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for p in pedidos %}
+                <tr>
+                  <td>{{ p.id }}</td>
+                  <td>{{ p.nombre }} {{ p.apellido }}</td>
+                  <th>TELEFONO</th>
+                  <td>{{ p.direccion }}</td>
+                  <td>{{ p.ciudad }}</td>
+                  <td>{{ p.fechaCreacion }}</td>
+                  <td>{{ p.estado }}</td>
+
+                  {% if p.estado ==  'En proceso' or Null %} 
+                  <td ><a class="buttonListPedido proceso" href="{% url 'ModificarEstadoCliente' p.id %}">{{ p.estado }}</a></td>
+                  {% endif %}
+                  
+                  {% if p.estado ==  'Enviado' %} 
+                      <td ><a class="buttonListPedido enviado" href="{% url 'ModificarEstadoCliente' p.id %}">{{ p.estado }}</a></td>
+                  {% endif %}
+
+                  {% if p.estado ==  'Cancelado' %} 
+                  <td ><a class="buttonListPedido cancelado">{{ p.estado }}</a></td>
+                  {% endif %}
+
+                  {% if p.estado ==  'Entregado' %} 
+                      <td ><a class="buttonListPedido entregado">{{ p.estado }}</a></td>
+                  {% endif %}
+                  <td ><a class="buttonListPedido"  onclick="confirmarEliminacionPedido('{{ p.nombre }}', '{{ p.apellido }}','{{ p.id }}');"><i class="bi bi-trash"></i></a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+            {% else %}
+            <div class="col">
+              <h2>No a realizado ningun pedido.</h2>
+            </div>
+            {% endif %}
+      </main>
+
+  </body>
+  
+  {% endblock %}
+</html>

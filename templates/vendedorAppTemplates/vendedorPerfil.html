@@ -32,17 +32,137 @@
         />
 </head>
 
-
 <body class="container text-star">
     <div class="row border border-5">
-        <label for="">Nombre: </label>
-        <br>
-        <label for="">Apellido: </label>
-        <br>
-        <label for="">Correo Electronico: </label>
-        <div class="modificarAdm">
-            <button type="button" class="buttonAdm" id="usariosAdm" onclick="usuariosAdm()"> Modificar </button>
+        {% if modificar %}
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                {% if messages %}
+                <div>
+                    {% for m in messages %}
+                        {% if m.tags == 'success' %}
+                            <div class="alert alert-success" role="alert">
+                                {{ m }}
+                            </div>
+                        {% elif m.tags == 'error' %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ m }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <form method="post" class="align-items-center" onsubmit="return confirmarEditarPerfil();">
+                    {% csrf_token %} 
+    
+                    <div class="form-group">
+                        {{ form.nombre.label_tag }} {{ form.nombre }}
+                        {{ form.nombre.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.apellido.label_tag }} {{ form.apellido }}
+                        {{ form.apellido.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.correo.label_tag }} {{ form.correo }}
+                        {{ form.correo.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.telefono.label_tag }} {{ form.telefono }}
+                    </div>    
+                    
+                    <div class="form-group">
+                        {{ form.password.label_tag }} {{ form.password }}
+                        {{ form.password.errors }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.direccion.label_tag }} {{ form.direccion }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.ciudad.label_tag }} {{ form.ciudad }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.comuna.label_tag }} {{ form.comuna }}
+                    </div>                    
+                    <button class="buttonAdm" type="submit">Modificar</button>
+                </form>
+            </div>
+            <div class="col-3"></div>
+
         </div>
+        <div class="row">
+            <div class="col"><a href="{% url 'vendedorPerfil' %}" class="buttonAdm" >Volver</a></div>
+            <div class="col"><a href="{% url 'editarContraVend' %}" class="buttonAdm" >Modificar contraseña</a></div>
+        </div>
+        {% endif %}
+         
+
+
+        
+        {% if perfil %}
+
+            <label for="">Nombre: {{ nombre }}</label>
+            <br>
+            <label for="">Apellido:  {{ apellido }}</label>
+            <br>
+            <label for="">Telefono:  {{ telefono }}</label>
+            <br>
+            <label for="">Correo Electronico:  {{ correo }}</label>
+            <br>
+            <label for="">Direccion:  {{ direccion }}</label>
+            <br>
+            <label for="">Ciudad:  {{ ciudad }}</label>
+            <br>
+            <label for="">Comuna:  {{ comuna }}</label>
+            <br>
+            <div class="modificarAdm">
+                <a  class="buttonAdm" id="usariosAdm" href="{% url 'editarPerfilVend' %}" > Modificar </a>
+            </div>
+        {% endif %}
+
+        {% if contraseña %}
+        
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6"><br/>
+                {% if messages %}
+                <div>
+                    {% for m in messages %}
+                        {% if m.tags == 'success' %}
+                            <div class="alert alert-success" role="alert">
+                                {{ m }}
+                            </div>
+                        {% elif m.tags == 'error' %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ m }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <form method="post" class="align-items-center" onsubmit="return confirmarEditarContra();">
+                    {% csrf_token %} 
+                    <div class="form-group">
+                        <p>• Introduce tu contraseña actual.</p>
+                        {{ form.password.label_tag }} {{ form.password }}
+                        {{ form.password.errors }}
+                    </div>
+                    <div class="form-group">
+                        <p>• Introduce la nueva contraseña.</p>
+                        {{ form.newPassword.label_tag }} {{ form.newPassword }}
+                        {{ form.newPassword.errors }}
+                    </div>                  
+                    <button class="buttonAdm" type="submit" >Modificar</button>
+                </form>
+            </div>
+            <div class="col-3"></div>
+
+        </div>
+        <div class="row">
+            <div class="col"><a href="{% url 'editarPerfilVend' %}" class="buttonAdm" >Volver</a></div>
+        </div>                
+        {% endif %}
     </div>
 
 </body>

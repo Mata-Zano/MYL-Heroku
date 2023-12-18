@@ -1,61 +1,67 @@
-function ventasAdm() {
-    window.location.href = "gestionVentas";
-   }
-   function usuariosAdm() {
-    window.location.href = "gestionUsuarios";
-   }
-   function perfilAdm() {
-    window.location.href = "perfil";
-   }
-   
-   function crearCuenta() {
-    window.location.href = "crearCuenta";
-   }
-   
-   function administrarCuenta() {
-    window.location.href = "administrarCuenta";
-   }
-   function listarProductos() {
-    window.location.href = "listaProductos";
-   }
-   function volverCrear() {
-    window.location.href = "";
-   }
-   
-   function confirmacionEliminacion(){
-    return confirm('¿Estás seguro de que quieres eliminar estos usuarios?')
-   }
-   function confirmacionModificacion(){
-      return confirm('¿Estás seguro de que quieres modificar estos usuarios?');
-   }
-   
-   document.addEventListener("DOMContentLoaded", function() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const modificarBtn = document.querySelector('button[name="action"]');
-    const eliminarBtn = document.querySelector('button[name="action"]');
-    // const form = document.getElementById("administrarForm");
-  
-    checkboxes.forEach(function(checkbox) {
-      checkbox.addEventListener("change", function() {
-        const anyChecked = Array.from(checkboxes).some((checkbox) => checkbox.checked);
-        modificarBtn.disabled = !anyChecked;
-        eliminarBtn.disabled = !anyChecked;
-      });
-    });});
-  
-//     modificarBtn.addEventListener("click", function(event) {
-//       form.querySelector('input[name="action"]').value = "modificar";
-//     });
-  
-//     eliminarBtn.addEventListener("click", function(event) {
-//       form.querySelector('input[name="action"]').value = "eliminar";
-//     });
-  
-//     form.addEventListener("submit", function(event) {
-//       if (!form.querySelector('input[name="action"]').value) {
-//         event.preventDefault();
-//       }
-//     });
-//   });
-  
-   
+
+// ___________________EDITAR_________________________________________
+function confirmarEditarPedido(nombre, apellido, id) {
+  var confirmacion = confirm('¿Estás seguro de que quieres Editar el pedido de: ' + nombre +" "+ apellido+ ", con identificador: "+ id +'?');
+  if (confirmacion) {
+    window.location.href = 'eliminarPedido/' + id + '/';
+  }
+}
+
+function confirmarEditarProducto(nombre, id) {
+  var confirmacion = confirm('¿Confirmas tu deseo de editar al siguiente Producto: ' + nombre + '?');
+  if (confirmacion) {
+  }
+}
+
+function confirmarEditarUsuario(nombre, id) {
+  var confirmacion = confirm('¿Confirmas tu deseo de editar al siguiente Usuario: ' + nombre + '?');
+}
+function confirmarEditarPerfil() {
+  var confirmacion = confirm('¿Confirmas tu deseo de editar los campos?');
+  if (!confirmacion) {
+      // Si el usuario hace clic en "Cancelar", evitamos que el formulario se envíe.
+      return false;
+  }
+  // Si el usuario hace clic en "Aceptar", el formulario se enviará normalmente.
+  return true;
+}
+function confirmarEditarContra() {
+  var confirmacion = confirm('¿Confirmas tu deseo de cambiar la contraseña ?');
+  if (!confirmacion) {
+      return false;
+  }
+  return true;
+}
+function confirmarEditarEstado() {
+  var confirmacion = confirm('¿Confirmas tu deseo de cambiar el estado del pedido?');
+  if (!confirmacion) {
+      return false;
+  }
+  return true;
+}
+// ___________________ELIMINAR_______________________________________
+function confirmarEliminacionPedido(nombre, apellido, id) {
+  var confirmacion = confirm('¿Estás seguro de que quieres eliminar el pedido de: ' + nombre +" "+ apellido+ ", con identificador: "+ id +'?');
+  if (confirmacion) {
+    window.location.href = 'eliminarPedido/' + id + '/';
+  }
+}
+
+function confirmarEliminacionProducto(nombre, id) {
+  var confirmacion = confirm('¿Confirmas tu deseo de eliminar al siguiente Producto: ' + nombre + '?');
+  if (confirmacion) {
+    window.location.href = 'eliminarProducto/' + id + '/';
+  }
+}
+
+
+function confirmarEliminacionUsuario(nombre, id) {
+  var confirmacion = confirm('¿Confirmas tu deseo de eliminar al siguiente Usuario: ' + nombre + '?');
+  if (confirmacion) {
+    window.location.href = 'eliminar/' + id + '/';
+  }
+}
+
+
+
+

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'loginApp',
     'vendedorApp',
     'clienteApp',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,14 @@ MIDDLEWARE = [
 ]
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 ROOT_URLCONF = 'MYL.urls'
 
@@ -127,6 +136,15 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+#Correo
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True  # O False si tu servidor SMTP no usa TLS
+EMAIL_HOST_USER = 'distribuidoramylcalama@gmail.com'
+EMAIL_HOST_PASSWORD = 'cobjhfvelmaoggkr'
 
 
 # Static files (CSS, JavaScript, Images)

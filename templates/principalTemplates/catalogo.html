@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% extends 'principalTemplates/navPrincipal.html' %} 
 {% load static %}
 <html lang="en">
   <head>
@@ -21,78 +22,39 @@
     />
     <title>Distribuidora MYL</title>
   </head>
+  {% block contentPrincipal %} 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
   <body class="container">
-    <header class="row">
-        <div class="col-sm">
-          <img src="{% static 'img/logo.png' %}" alt="logo" class="logo">
-        </div>
-        <div class="col-sm">
-          <h1 class="text-center titulo">Distribuidora M&L</h1>
-        </div>
-        <div class="col-sm-8">
-          <nav class="nav nav-pills flex-column flex-sm-row">
-            <a
-              class="flex-sm-fill text-sm-center nav-link"
-              aria-current="page"
-              href="/"
-              >Inicio</a
-            >
-            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'Catalogo' %}"
-              >Catálogo</a
-            >
-            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'Contacto' %}"
-              >Contacto</a
-            >
-            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'Sobre' %}"
-              >Sobre Nosotros</a
-            >
-            <a class="flex-sm-fill text-sm-center nav-link" href="{% url 'login' %}"
-              >Ingresar</a>
-          </nav>
-        </div>
-      <hr />
-    </header>
+   
     <main>
       <div class="row text-center">
         <h2>{{ titulo }}</h2>
         <p>
-          ¡Bienvenido al catálogo de productos de nuestra distribuidora!
-          ¡Descubra una amplia gama de productos cuidadosamente seleccionados
-          para satisfacer sus necesidades y elevar su experiencia.!
+        ¡ Descubra una amplia gama de productos cuidadosamente seleccionados
+        para satisfacer sus necesidades y elevar su experiencia !
         </p>
       </div>
       <hr>
       <div class="row row-cols-1 row-cols-md-3 g-4 text-center">
-        <div class="col">
-          <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Producto 1</h5>
-              <p class="card-text">descripción</p>
-              <p><b>$Precio</b></p>
+        {% if producto %}
+          {% for p in producto%}
+          <div class="col">
+            <div class="card h-100">
+              <img src="{{ p.imagen_url }}" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ p.nombre }}</h5>
+                <p class="card-text">{{ p.descripcion }}</p>
+                <p><b>$ {{ p.precio|floatformat:0 }}</b></p>
+              </div>
             </div>
           </div>
+          {% endfor %}
+        {% else %}
+        <div class = "col">
+          <h2>Productos Agotadas.</h2>
         </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Producto 2</h5>
-              <p class="card-text">descripción</p>
-              <p><b>$Precio</b></p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Producto 3</h5>
-              <p class="card-text">descripción</p>
-              <p><b>$Precio</b></p>
-            </div>
-          </div>
-        </div>
+        {% endif %}
       </div>
       <hr/>
     </main>
@@ -131,4 +93,6 @@
       </div>
     </footer>
   </body>
+  {% endblock %}
+
 </html>

@@ -16,14 +16,16 @@
 hr{
     color: #86654B;
     border: solid 2px;
-}
+    width: 100%;
+ }
+ 
 .titulo{
-    margin-right: 50px;
+    margin-top: 200px;
     font-family: 'Dm Sans';
 }
 .navbar{
-    margin-top: 30px;
-    margin-right: 100px;
+    margin-top: 50px;
+
     text-align: start;
 }
 .nav-link{
@@ -36,7 +38,7 @@ hr{
   
   .nav-link:hover {
     color: #86654B;
-  }
+  } 
 .copyright{
     background-color: #86654B;
 }

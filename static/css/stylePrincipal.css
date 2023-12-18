@@ -1,0 +1,99 @@
+.container{
+    background-color: #F6F4F6;
+}
+.nosotros{
+  margin-left: 50px;
+  margin-top: 30px;
+}
+.caja{
+  margin: 10px;
+}
+.logo{
+    height:75px ;
+    width: 75px;
+}
+.imagen1 {
+    width: 2px;
+}
+hr{
+    color: #86654B;
+    border: solid 2px;
+    width: 100%;
+ }
+ 
+.titulo{
+    margin-top: 15px;
+    font-family: 'Dm Sans';
+}
+.navbar{
+    margin-right: 100px;
+    text-align: start;
+}
+.nav-link{
+    margin-top: 15px;
+    font-family: 'Open Sauce';           
+    color: #86654B;
+}
+.nav-link:active {
+    color:#86654B;
+  }
+  
+  .nav-link:hover {
+    color: #86654B;
+  } 
+  
+.copyright{
+    background-color: #86654B;
+}
+.email{
+    margin-left: 50px;
+}
+.imgIndex{
+  margin: 10px;
+  
+}
+
+.btnContacto { 
+    background-color: #86654B;
+}
+
+.buttonLogin{
+  align-items: center;
+  background-color: #F2F2F2;
+  border: 1px solid #DFDFDF;
+  border-radius: 16px;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  justify-content: center;
+  line-height: 28px;
+  max-width: 100%;
+  padding: 14px 22px;
+  text-decoration: none;
+  transition: all .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+.buttonLogin:active,
+.buttonLogin:hover {
+  outline: 0;
+}
+
+.buttonLogin:hover {
+  background-color: #A6A6A6;
+  border-color: rgba(0, 0, 0, 0.19);
+}
+
+@media (min-width: 768px) {
+  .buttonLogin {
+    font-size: 20px;
+    min-width: 200px;
+    padding: 14px 16px;
+  }
+}

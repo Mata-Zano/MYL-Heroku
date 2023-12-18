@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% extends 'principalTemplates/navPrincipal.html' %} 
+
 {% load static %}
 <html lang="en">
   <head>
@@ -21,72 +23,39 @@
     />
     <title>Distribuidora MYL</title>
   </head>
+
+  {% block contentPrincipal %} 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
   <body class="container">
-    <header class="row">
-      <div class="col-sm">
-        <img src="{% static 'img/logo.png' %}" alt="logo" class="logo" />
-      </div>
-      <div class="col-sm">
-        <h1 class="text-center titulo">Distribuidora M&L</h1>
-      </div>
-      <div class="col-sm-8">
-        <nav class="nav nav-pills flex-column flex-sm-row">
-          <a
-            class="flex-sm-fill text-sm-center nav-link"
-            aria-current="page"
-            href="/"
-            >Inicio</a
-          >
-          <a
-            class="flex-sm-fill text-sm-center nav-link"
-            href="{% url 'Catalogo' %}"
-            >Catálogo</a
-          >
-          <a
-            class="flex-sm-fill text-sm-center nav-link"
-            href="{% url 'Contacto' %}"
-            >Contacto</a
-          >
-          <a
-            class="flex-sm-fill text-sm-center nav-link"
-            href="{% url 'Sobre' %}"
-            >Sobre Nosotros</a
-          >
-          <a
-            class="flex-sm-fill text-sm-center nav-link"
-            href="{% url 'login' %}"
-            >Ingresar</a
-          >
-        </nav>
-      </div>
-      <hr />
-    </header>
     <main>
+      <h2 class="text-center">Sobre Nosotros</h2>
       <div class="row">
-        <div class="col">
-          <h2 class="text-center">Sobre Nosotros</h2>
-          <br />
-          <p>
-            <b>Sobre Nosotros:</b> Bienvenidos a Distribuidora M&L, tu aliado
-            confiable en la distribución de productos en Calama, Región de
-            Antofagasta. En Distribuidora M&L, nuestra misión es brindar
-            soluciones integrales y eficientes a las necesidades de distribución
-            y abastecimiento de nuestros clientes.
-          </p>
-          <p>
-            <b>Nuestros Valores:</b> En Distribuidora M&L, creemos en la
-            honestidad, la calidad y la satisfacción del cliente. Nos esforzamos
-            por establecer relaciones sólidas y duraderas con nuestros clientes
-            y proveedores, basadas en la confianza y la integridad.
-          </p>
-          <p>
-            <b>Nuestra Misión:</b> Nuestra misión es proporcionar a nuestros
-            clientes productos de alta calidad de manera eficiente y confiable.
-            Nos enorgullece contribuir al crecimiento y éxito de las empresas
-            locales a las que servimos.
-          </p>
+        <div class="col-6">
+        <br />
+          <div class="nosotros">
+            <p>
+              <b>Sobre Nosotros:</b> Bienvenidos a Distribuidora M&L, tu aliado
+              confiable en la distribución de productos en Calama, Región de
+              Antofagasta. En Distribuidora M&L, nuestra misión es brindar
+              soluciones integrales y eficientes a las necesidades de distribución
+              y abastecimiento de nuestros clientes.
+            </p>
+            <p>
+              <b>Nuestros Valores:</b> En Distribuidora M&L, creemos en la
+              honestidad, la calidad y la satisfacción del cliente. Nos esforzamos
+              por establecer relaciones sólidas y duraderas con nuestros clientes
+              y proveedores, basadas en la confianza y la integridad.
+            </p>
+            <p>
+              <b>Nuestra Misión:</b> Nuestra misión es proporcionar a nuestros
+              clientes productos de alta calidad de manera eficiente y confiable.
+              Nos enorgullece contribuir al crecimiento y éxito de las empresas
+              locales a las que servimos.
+            </p>
+          </div>
         </div>
-        <div class="col text-center">
+        <div class="col-6 text-center">
           <img src="{% static 'img/logo.png' %}" alt="nosotros" />
         </div>
       </div>
@@ -127,4 +96,6 @@
       </div>
     </footer>
   </body>
+  {% endblock %}
+
 </html>

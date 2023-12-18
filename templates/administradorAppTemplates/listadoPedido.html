@@ -5,52 +5,95 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-       
         <title>Document</title>
-        <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-        crossorigin="anonymous"
-        />
-
         {% block content %}
-        <link
-        rel="stylesheet"
-        href="{% static 'css/styleAdm.css' %}"
-        type="text/css"
-        />
-
     </head>
     <body class="container">
         <header class="row">
             <h1 class="text-center">Listado de Pedidos</h1>
-        </header>
+        </header><br/>
         <main class="row">
+            {% if messages %}
+            <div>
+                {% for m in messages %}
+                    {% if m.tags == 'success' %}
+                        <div class="alert alert-success text-center" role="alert">
+                            {{ m }}
+                        </div>
+                    {% elif m.tags == 'error' %}
+                        <div class="alert alert-danger text-center" role="alert">
+                            {{ m }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% if pedido %}
             <div class="col listaProductos">
-                <form action="" class="">
+                <form method="POST" class="">
                     <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">NOMBRE</th>
-                                <th scope="col">DESCRIPCIÓN</th>
-                                <th scope="col">CATEGORÍA</th>
-                                <th scope="col">STOCK</th>
-                                <th scope="col">SELECCIONAR</th>
+                        <thead class="listPedidoshr">
+                            <tr> 
+                                <!-- Cambiar a minusculas -->
+                                <th scope="col">ID Pedido</th>
+                                <th scope="col">Nombre del destinatario</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Dirección</th>
+                                <th scope="col">Ciudad</th>
+                                <th scope="col">Fecha del pedido</th>
+                                <th scope="col">Fecha de entrega</th>
+                                <th scope="col">Estado del pedido</th>
+                                <th scope="col">Detalle del pedido</th>
+                                <th scope="col">Modificar estado</th>
+                                <th scope="col">Cancelar</th>
                             </tr>
                         </thead>
-                        <tbody>
+
+                        <tbody class="listPedidoshb">
+                            {% for p in pedido %}
                             <tr>
-        
+                                <td>{{ p.id }}</td>
+                                <td>{{ p.nombre }} {{ p.apellido }}</td>
+                                <td>+569 {{ p.telefono }}</td>
+                                <td>{{ p.direccion }}</td>
+                                <td>{{ p.ciudad }}</td>
+                                <td>{{ p.fechaCreacion }}</td>
+
+                                {% if p.fechaEntrega == None %}
+                                <td>No determinada</td>
+                                {% else %}
+                                <td>{{ p.fechaEntrega }}</td>
+                                {% endif %}
+
+                                <td>{{ p.estado }}</td>
+                                <td><a class="buttonListPedido" href="{% url 'detallePedido' p.id %}"><i class="bi bi-card-list"></i></i></a></td>
+                                {% if p.estado ==  'En proceso' or Null %} 
+                                    <td ><a class="buttonListPedido proceso" href="{% url 'ModificarEstado' p.id %}">{{ p.estado }}</a></td>
+                                {% endif %}
+                                
+                                {% if p.estado ==  'Enviado' %} 
+                                    <td ><a class="buttonListPedido enviado" href="{% url 'ModificarEstado' p.id %}">{{ p.estado }}</a></td>
+                                {% endif %}
+
+                                {% if p.estado ==  'Cancelado' %} 
+                                <td ><a class="buttonListPedido cancelado" href="{% url 'ModificarEstado' p.id %}">{{ p.estado }}</a></td>
+                                {% endif %}
+
+                                {% if p.estado ==  'Entregado' %} 
+                                    <td ><a class="buttonListPedido entregado" href="{% url 'ModificarEstado' p.id %}">{{ p.estado }}</a></td>
+                                {% endif %}
+                                <td ><a class="buttonListPedido"  onclick="confirmarEliminacionPedido('{{ p.nombre }}', '{{ p.apellido }}','{{ p.id }}');"><i class="bi bi-trash"></i></a></td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </form>
             </div>
-            <div>
-                
-            </div>
+            {% else %}
+            <div class="alert alert-info" role="alert">
+                No se a realizado ningun pedido.
+              </div>
+            {% endif %}
         </main>
         <footer class="row">
             <div class="botones col">

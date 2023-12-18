@@ -17,7 +17,7 @@
     </head>
 
     <body class="container text-center">
-        <h1>Administrar cuentas</h1>
+        <h1>Administrar cuentas</h1><br/>
         <form id="administrarForm" method="post">
             {% csrf_token %}
             <table class="table">
@@ -29,34 +29,32 @@
                         <th>Apellido</th>
                         <th>Teléfono</th>
                         <th>Correo</th>
-                        <th>Contraseña</th>
-                        <th>Seleccionar</th>
+                        <th>Modificar</th>
+                        <th>Eliminar</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    {% for usuario in usuarios %}
+                    {% for u in usuarios %}
                     <tr>
-                        <td>{{ usuario.id }}</td>
-                        <td>{{ usuario.cuenta.rol.get_nombre_display }}</td>
-                        <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.apellido }}</td>
-                        <td>{{ usuario.telefono }}</td>
-                        <td>{{ usuario.cuenta.correo }}</td>
-                        <td>{{ usuario.cuenta.password }}</td>
-                        <td><input type="checkbox" name="usuario" value="{{ usuario.id }}"></td>
+                        <td>{{ u.id }}</td>
+                        <td>{{ u.cuenta.rol.get_nombre_display }}</td>
+                        <td>{{ u.nombre }}</td>
+                        <td>{{ u.apellido }}</td>
+                        <td>{{ u.telefono }}</td>
+                        <td>{{ u.cuenta.correo }}</td>
+                        <td ><a class="buttonListPedido" href="{% url 'modificarUsuario' u.id %}"><i class="bi bi-pen"></i></a></td>
+                        <td ><a class="buttonListPedido"  onclick="confirmarEliminacionUsuario('{{ u.nombre }}', '{{ u.id }}','{{ u.apellido }}');"><i class="bi bi-trash"></i></a></td>
+                        
+
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <div class="row">
-                <div class="col">
-                    <button class="buttonAdm" type="button" id="modificarBtn" value="modificar" action="modificar" >Modificar</button>
-                </div>
-                <div class="col">
-                    <button class="buttonAdm"  type="submit" id="eliminarBtn"  value="eliminar" action="eliminar" onclick="return confirmacionEliminacion()">Eliminar</button>
-                </div>
-            </div>
         </form>
+        <div class="row">
+            <a href="{% url 'crearCuenta' %}" class="buttonAdm">Crear Usuario</a>
+        </div>
         <div class="row">
             <a href="{% url 'usuariosAdm' %}" class="buttonAdm">Volver</a>
         </div>

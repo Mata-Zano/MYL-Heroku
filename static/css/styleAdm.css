@@ -31,7 +31,6 @@
 .logo{
     width: 125px;
     height: 125px;
-    margin-left: 45px;
 }
 .ventasImg{
     margin-left: 10px;
@@ -45,6 +44,21 @@
   margin-top: 150px;
 }
 /* CSS */
+
+.listPedidoshr{
+  font-size: 14px;
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+.listPedidoshb{
+  font-size: 11px;
+  text-align: center;
+
+}
+
+
 .buttonAdm {
     margin: 10px;
   align-items: center;
@@ -68,7 +82,116 @@
   touch-action: manipulation;
   width: 100%;
 }
+.buttonListPedido {
+  margin: 10px;
+align-items: center;
+background-color: #F2F2F2;
+border: 1px solid #DFDFDF;
+border-radius: 16px;
+box-sizing: border-box;
+color: #000000;
+cursor: pointer;
+display: flex;
+font-family: Inter, sans-serif;
+font-size: 18px;
+justify-content: center;
+line-height: 28px;
+padding: 14px 22px;
+text-decoration: none;
+transition: all .2s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+}
+.enviado {
+  margin: 10px;
+align-items: center;
+background-color: #7FC99A;
+border: 1px solid #DFDFDF;
+border-radius: 16px;
+box-sizing: border-box;
+color: #000000;
+cursor: pointer;
+display: flex;
+font-family: Inter, sans-serif;
+font-size: 18px;
+justify-content: center;
+line-height: 28px;
+padding: 14px 22px;
+text-decoration: none;
+transition: all .2s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+font-size: 10px;
+}
+.proceso {
+  margin: 10px;
+align-items: center;
+background-color: #FFD700;
+border: 1px solid #DFDFDF;
+border-radius: 16px;
+box-sizing: border-box;
+color: #000000;
+cursor: pointer;
+display: flex;
+font-family: Inter, sans-serif;
+font-size: 18px;
+justify-content: center;
+line-height: 28px;
+padding: 14px 22px;
+text-decoration: none;
+transition: all .2s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+font-size: 10px;
+}
+.cancelado {
+  margin: 10px;
+align-items: center;
+background-color: rgba(182, 19, 19, 0.651);
+border: 1px solid #DFDFDF;
+border-radius: 16px;
+box-sizing: border-box;
+color: #000000;
+cursor: pointer;
+display: flex;
+font-family: Inter, sans-serif;
+font-size: 18px;
+justify-content: center;
+line-height: 28px;
+padding: 14px 22px;
+text-decoration: none;
+transition: all .2s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+font-size: 10px;
+}
+.entregado {
+  margin: 10px;
+align-items: center;
+background-color: #0077ff80;
+border: 1px solid #DFDFDF;
+border-radius: 16px;
+box-sizing: border-box;
+color: #000000;
+cursor: pointer;
+display: flex;
+font-family: Inter, sans-serif;
+font-size: 18px;
+justify-content: center;
+line-height: 28px;
+padding: 14px 22px;
+text-decoration: none;
+transition: all .2s;
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+font-size: 10px;
 
+}
 .buttonAdm:active,
 .buttonAdm:hover {
   outline: 0;
@@ -86,3 +209,22 @@
     padding: 14px 16px;
   }
 }
+
+
+.navbar{
+  margin-right: 100px;
+  text-align: start;
+}
+.nav-link{
+  margin-top: 15px;
+  font-family: 'Open Sauce';           
+  color: #86654B;
+}
+.nav-link:active {
+  color:#86654B;
+}
+
+.nav-link:hover {
+  color: #86654B;
+} 
+

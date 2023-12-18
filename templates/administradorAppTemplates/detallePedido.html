@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends 'administradorAppTemplates/nav.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        {% block content %}
+    </head>
+    <body class="container">
+        <header class="row">
+            <h1 class="text-center">Listado de Pedidos</h1>
+        </header>
+        <main class="row">
+
+            <div class="col listaProductos">
+                <form method="POST" class="">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID PRODUCTO</th>
+                                <th scope="col">PRODUCTO</th>
+                                <th scope="col">CANTIDAD</th>
+                                <th scope="col">PECIO UNITARIO</th>
+                                <th scope="col">PRECIO TOTAL </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for d in detalle %}
+                            <tr>
+                                <td>{{ d.producto.id }}</td>
+                                <td>{{ d.producto.nombre }}</td>
+                                <td>{{ d.cantidad }}</td>
+                                <td>{{ d.precio_unitario }}</td>
+                                <td>{{ d.precio_total }}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>TOTAL:</td>
+                                <td>{{ total }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </main>
+        <footer class="row">
+            <div class="botones col">
+            <a href="{% url 'listaPedidos' %}" type="button" class="buttonAdm">Volver</a>
+            </div>
+        </footer>
+        
+        
+    </body>
+    {% endblock %}
+</html>
