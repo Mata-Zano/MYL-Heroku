@@ -168,9 +168,11 @@ def agregarCarritoCliente(request, id):
                 carrito = Carrito(cuenta)  # Asegúrate de que estás pasando request.user
                 agregado = carrito.agregar(id , cantidad)
 
+                
                 if agregado :   
                     messages.success(request, 'Producto agregado al carrito!')
                     return redirect('clienteCatalogo')
+                
                 else:
                     messages.error(request, 'La cantidad supera el Sotck!')
                     return redirect('clienteCatalogo')

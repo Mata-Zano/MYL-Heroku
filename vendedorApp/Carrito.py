@@ -5,34 +5,33 @@ class Carrito:
         self.usuario = usuario
         self.carrito = getattr(usuario, 'carrito', {}) or {}
 
-    def agregar(self, producto, cantidad):
-        producto = Producto.objects.get(id = producto)
-        if   cantidad <= str(producto.stock):    
+    def agregar(self, producto_id, cantidad):
+        producto = Producto.objects.get(id=producto_id)
+        cantidad = int(cantidad)
+        if cantidad <= producto.stock:
             id = str(producto.id)
+            
             if id not in self.carrito.keys():
                 self.carrito[id] = {
                     "producto_id": producto.id,
                     "nombre": producto.nombre,
-                    "precio": producto.precio * float(cantidad) ,
+                    "precio": producto.precio * cantidad,
                     "precioUnitario": producto.precio,
                     "descripcion": producto.descripcion,
-                    "cantidad": int(cantidad),
+                    "cantidad": cantidad,
                 }
                 self.guardar_carrito()
                 return True
             else:
-                if self.carrito[id]["cantidad"] <= producto.stock:
-                    # Actualizar el campo "precio" multiplicando el precio unitario por la nueva cantidad
-                    self.carrito[id]["cantidad"] = self.carrito[id]["cantidad"] + int(cantidad)
-                    self.carrito[id]["precio"] = self.carrito[id]["precio"] + (self.carrito[id]["precioUnitario"] * float(cantidad))
+                if cantidad <= (producto.stock - self.carrito[id]["cantidad"]):
+                    # Actualizar la cantidad y el precio en el carrito
+                    self.carrito[id]["cantidad"] += cantidad
+                    self.carrito[id]["precio"] += (producto.precio * cantidad)
                     self.guardar_carrito()
-                    
                     return True
                 else:
-                    print("Stock agregar")
                     return False
         else:
-            print("La cantidad supera el Sotck.")
             return False
         #ejecuta pero no suma nada dasdasda
     def sumarle (self, producto):
